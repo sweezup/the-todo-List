@@ -9,9 +9,9 @@ export default function App() {
   // qui va contenir la liste des tâches
   const [tasks, setTask] = useState([
     {
+      id: new Date().getTime().toString(),
       title: "ceci est la première tâche",
       completed: false,
-      id: new Date().getTime().toString(),
     },
   ]);
 

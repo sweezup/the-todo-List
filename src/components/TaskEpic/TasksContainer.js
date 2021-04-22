@@ -7,7 +7,7 @@ const TasksContainer = ({ tasks }) => {
   console.log("tasks [TasksContainer] = ", tasks);
   return (
     <View style={styles.container}>
-      <TaskForm />
+      <TaskForm tasks={tasks} />
       <TasksList tasks={tasks} />
     </View>
   );
