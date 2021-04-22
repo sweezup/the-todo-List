@@ -2,27 +2,18 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import { Input, Button } from "react-native-elements";
 
-const TaskForm = ({ tasks }) => {
+const TaskForm = ({ onAddTask }) => {
   // variable taskTitle qui sera modifiée depuis la text input
   const [taskTitle, setTaskTitle] = useState("");
+
   // methode pour ajouter du texte depuis la text input
   const _onChangeText = (taskTitle) => {
     setTaskTitle(taskTitle);
   };
+
   // méthode pour ajouter une tâche lorsqu'on presse sur le bouton
   const _onPressButton = () => {
-    console.log("XXXXXXXXXXXXXX-- TASKSFORM --XXXXXXXXXXXXXXXXXXX");
-    console.log("tasks = ", tasks);
-    console.log("taskTitle = ", taskTitle);
-    // methode
-    const newTask = {
-      id: new Date().getTime().toString(),
-      title: taskTitle,
-      completed: false,
-    };
-    console.log("newTask = ", newTask);
-    tasks.push(newTask, ...tasks);
-    //setTaskTitle("");
+    onAddTask(taskTitle);
   };
   return (
     <View style={styles.container}>

@@ -5,22 +5,10 @@ import TasksContainer from "./src/components/TaskEpic/TasksContainer";
 import Header from "./src/components/_Shared/Header";
 
 export default function App() {
-  // création et initialisation du tableau d'objets "tasks" (modifiable avec setTask)
-  // qui va contenir la liste des tâches
-  const [tasks, setTask] = useState([
-    {
-      id: new Date().getTime().toString(),
-      title: "ceci est la première tâche",
-      completed: false,
-    },
-  ]);
-
-  console.log("tasks = ", tasks);
-
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <TasksContainer tasks={tasks} />
+      <TasksContainer />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
