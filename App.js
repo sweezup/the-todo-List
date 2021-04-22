@@ -1,14 +1,26 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, SafeAreaView, Platform } from "react-native";
 import TasksContainer from "./src/components/TaskEpic/TasksContainer";
 import Header from "./src/components/_Shared/Header";
 
 export default function App() {
+  // création et initialisation du tableau d'objets "tasks" (modifiable avec setTask)
+  // qui va contenir la liste des tâches
+  const [tasks, setTask] = useState([
+    {
+      title: "ceci est la première tâche",
+      completed: false,
+      id: new Date().getTime().toString(),
+    },
+  ]);
+
+  console.log("tasks = ", tasks);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <TasksContainer />
+      <TasksContainer tasks={tasks} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );

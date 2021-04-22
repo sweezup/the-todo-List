@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
 const TaskTile = ({ title }) => {
+  console.log("title = ", title);
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>

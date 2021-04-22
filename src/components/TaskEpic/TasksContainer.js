@@ -1,12 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import TaskTile from "./TaskTile";
+import TasksList from "./TasksList";
 
-const TasksContainer = () => {
+const TasksContainer = ({ tasks }) => {
+  console.log("tasks [TasksContainer] = ", tasks);
   return (
     <View style={styles.container}>
-      <TaskTile title="Ceci est la première tâche !" />
-      <TaskTile title="Ceci est la seconde tâche !!" />
+      <TasksList tasks={tasks} />
     </View>
   );
 };
