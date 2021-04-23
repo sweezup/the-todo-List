@@ -6,7 +6,7 @@ import TasksList from "./TasksList";
 const TasksContainer = () => {
   // création et initialisation du tableau d'objets "tasks" (modifiable avec setTask)
   // qui va contenir la liste des tâches
-  const [tasks, setTask] = useState([
+  const [tasks, setTasks] = useState([
     {
       id: new Date().getTime().toString(),
       title: "ceci est la première tâche",
@@ -14,6 +14,7 @@ const TasksContainer = () => {
     },
   ]);
 
+  // AJOUT D'UNE NOUVELLE TACHE
   // methode (callback) pour ajouter une tâche avec le bouton "ajouter"
   const onAddTask = (taskTitle) => {
     const newTask = {
@@ -21,14 +22,41 @@ const TasksContainer = () => {
       title: taskTitle,
       completed: false,
     };
-    // AJOUT D'UNE NOUVELLE TACHE A L'AIDE DU STATE
-    setTask([newTask, ...tasks]);
+    //  Ajout de la nouvelle dans le tableau à l'aide du state
+    setTasks([newTask, ...tasks]);
+  };
+
+  // CHANGER LE STATUT DE LA TACHE
+  const onChangeStatus = (id) => {
+    // tableau qui contiendra toutes les tâches avec la tâche mise à jour
+    let newTasks = [];
+    // on parcours le tableau de tâches (state), pour trouver (avec son id) la tâche à modifier
+    tasks.forEach((task) => {
+      if (task.id === id) {
+        //setTasks({ id: id, title: task.title, completed: !task.completed }); // à tester
+        // une fois trouvé, on l'ajoute au tableau d'objets (newTasks)
+        newTasks.push({
+          id: id,
+          title: task.title,
+          completed: !task.completed,
+        });
+      } else {
+        // les autres tâches sont àjoutées au tableau
+        newTasks.push(task);
+      }
+    });
+    // on remplace toutes les ancienes tâches avec le nouveau tableau des tâches contenant celle mise à jour
+    setTasks(newTasks);
+    console.log(
+      "liste des tâches, voyons si la tache est mise à jour ooooo",
+      tasks
+    );
   };
 
   return (
     <View style={styles.container}>
       <TaskForm onAddTask={onAddTask} />
-      <TasksList tasks={tasks} />
+      <TasksList tasks={tasks} onChangeStatus={onChangeStatus} />
     </View>
   );
 };
