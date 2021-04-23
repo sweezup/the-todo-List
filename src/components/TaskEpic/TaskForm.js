@@ -13,7 +13,10 @@ const TaskForm = ({ onAddTask }) => {
 
   // méthode pour ajouter une tâche lorsqu'on presse sur le bouton
   const _onPressButton = () => {
-    onAddTask(taskTitle);
+    if (taskTitle.length > 0) {
+      onAddTask(taskTitle);
+      setTaskTitle("");
+    }
   };
   return (
     <View style={styles.container}>
