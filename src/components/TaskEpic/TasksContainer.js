@@ -53,10 +53,25 @@ const TasksContainer = () => {
     );
   };
 
+  // SUPPRIMER UNE TACHE
+  const deleteTask = (id) => {
+    let newTasks = [];
+    tasks.forEach((task) => {
+      if (task.id != id) {
+        newTasks.push({ id: id, title: task.title, completed: task.completed });
+      }
+    });
+    setTasks(newTasks);
+  };
+
   return (
     <View style={styles.container}>
       <TaskForm onAddTask={onAddTask} />
-      <TasksList tasks={tasks} onChangeStatus={onChangeStatus} />
+      <TasksList
+        tasks={tasks}
+        onChangeStatus={onChangeStatus}
+        onDeleteTask={deleteTask}
+      />
     </View>
   );
 };

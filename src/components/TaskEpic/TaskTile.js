@@ -2,11 +2,20 @@ import color from "color";
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-const TaskTile = ({ title, id, completed, onChangeStatus }) => {
-  const onDelete = () => {};
+const TaskTile = ({ title, id, completed, onChangeStatus, onDeleteTask }) => {
+  // CHANGER LE STATUT DE LA TACHE
+  const changeStatus = () => {
+    onChangeStatus(id);
+  };
+  // SUPPRIMER UNE TACHE
+  const deleteTask = () => {
+    onDeleteTask(id);
+  };
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => onChangeStatus(id)}>
+      {/* autre façon d'utiliser la fonction onChangeStatus
+      <TouchableOpacity onPress={() => onChangeStatus(id)}> */}
+      <TouchableOpacity onPress={changeStatus}>
         <View style={styles.subContainer}>
           <Image
             style={styles.img}
@@ -29,7 +38,7 @@ const TaskTile = ({ title, id, completed, onChangeStatus }) => {
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={onDelete}>
+      <TouchableOpacity onPress={deleteTask}>
         <Image
           style={styles.img}
           source={require("./../../../assets/icon_bin.png")}
