@@ -1,8 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Counter from "./Counter";
 
 const CountersContainer = ({ nbTasks, nbTasksCompleted }) => {
   return (
+    <View style={styles.container}>
+      <Counter title={"Tasks created"} count={nbTasks} />
+      <Counter title={"Tasks completed"} count={nbTasksCompleted()} />
+    </View>
+    /*     
     <View style={styles.container}>
       <View style={styles.subContainer}>
         <Text style={styles.txt}>Task count</Text>
@@ -16,16 +22,17 @@ const CountersContainer = ({ nbTasks, nbTasksCompleted }) => {
           {nbTasksCompleted()}
         </Text>
       </View>
-    </View>
+    </View> 
+    */
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
-  subContainer: {
+  /*   subContainer: {
     marginVertical: 10,
     borderWidth: 2,
     borderColor: "lightgrey",
@@ -35,7 +42,7 @@ const styles = StyleSheet.create({
   txt: {
     fontSize: 20,
     color: "grey",
-  },
+  }, */
 });
 
 export default CountersContainer;
