@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#4a69bd",
     alignItems: "center",
     marginTop: Platform.OS === "android" ? 20 : 0,
-    color: "white",
   },
   txt: {
     color: "white",

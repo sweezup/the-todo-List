@@ -1,14 +1,16 @@
 import React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 
 const Counter = ({ title, count }) => {
   return (
-    <View>
-      <Text style={styles.txt}>{title}</Text>
-      <Text style={[styles.txt, { fontWeight: "bold", textAlign: "center" }]}>
-        {count}
-      </Text>
-    </View>
+    <TouchableOpacity>
+      <View>
+        <Text style={styles.txt}>{title}</Text>
+        <Text style={[styles.txt, { fontWeight: "bold", textAlign: "center" }]}>
+          {count}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 

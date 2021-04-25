@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from "react-native";
 import CountersContainer from "./CountersContainer";
 import TaskForm from "./TaskForm";
 import TasksList from "./TasksList";
+import AddTaskButton from "./AddTaskButton";
 
 const TasksContainer = () => {
   // création et initialisation du tableau d'objets "tasks" (modifiable avec setTask)
@@ -75,17 +76,28 @@ const TasksContainer = () => {
     return count;
   };
 
+  const [isFormAvailable, setIsFormAvailable] = useState(true);
+
+  const toggleForm = () => {
+    setIsFormAvailable(!isFormAvailable);
+  };
+
   return (
     <View style={styles.container}>
       <CountersContainer
         nbTasks={tasks.length}
         nbTasksCompleted={nbTasksCompleted}
       />
-      <TaskForm onAddTask={onAddTask} />
+      {/* rendu conditionnel : en fonction du flag isFormAvailable, on affiche ou non le composant TaskForm */}
+      {isFormAvailable && <TaskForm onAddTask={onAddTask} />}
       <TasksList
         tasks={tasks}
         onChangeStatus={onChangeStatus}
         onDeleteTask={deleteTask}
+      />
+      <AddTaskButton
+        toggleForm={toggleForm}
+        isFormAvailable={isFormAvailable}
       />
     </View>
   );
@@ -95,8 +107,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
     borderRadius: 5,
-    height: "95%",
+    height: "90%",
     width: "95%",
+    position: "relative",
+    marginBottom: 30,
+    flex: 1,
   },
 });
 
