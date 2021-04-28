@@ -9,11 +9,11 @@ const TasksContainer = () => {
   // création et initialisation du tableau d'objets "tasks" (modifiable avec setTask)
   // qui va contenir la liste des tâches
   const [tasks, setTasks] = useState([
-    {
+    /*     {
       id: new Date().getTime().toString(),
       title: "ceci est la première tâche",
       completed: false,
-    },
+    }, */
   ]);
 
   // AJOUT D'UNE NOUVELLE TACHE
@@ -27,6 +27,10 @@ const TasksContainer = () => {
     //  Ajout de la nouvelle dans le tableau à l'aide du state
     setTasks([newTask, ...tasks]);
   };
+  console.log(
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxx ---->>>>>> onAddTask --> tasks = ",
+    tasks
+  );
 
   // CHANGER LE STATUT DE LA TACHE
   const onChangeStatus = (id) => {
@@ -38,7 +42,8 @@ const TasksContainer = () => {
         //setTasks({ id: id, title: task.title, completed: !task.completed }); // à tester
         // une fois trouvé, on l'ajoute au tableau d'objets (newTasks)
         newTasks.push({
-          id: id,
+          //id: id, (on peut simplifier l'ecriture, on mettant juste "id," à la place de "id:i d" dans ce cas présent)
+          id,
           title: task.title,
           completed: !task.completed,
         });
@@ -46,25 +51,34 @@ const TasksContainer = () => {
         // les autres tâches sont àjoutées au tableau
         newTasks.push(task);
       }
+      console.log("contenu de tasks : ", tasks);
     });
     // on remplace toutes les ancienes tâches avec le nouveau tableau des tâches contenant celle mise à jour
     setTasks(newTasks);
-    console.log(
-      "liste des tâches, voyons si la tache est mise à jour ooooo",
-      tasks
-    );
   };
+  console.log(
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxx ---->>>>>> onChangeStatus ----> tasks",
+    tasks
+  );
 
   // SUPPRIMER UNE TACHE
   const deleteTask = (id) => {
     let newTasks = [];
     tasks.forEach((task) => {
       if (task.id != id) {
-        newTasks.push({ id: id, title: task.title, completed: task.completed });
+        newTasks.push({
+          id: task.id,
+          title: task.title,
+          completed: task.completed,
+        });
       }
     });
     setTasks(newTasks);
   };
+  console.log(
+    "xxxxxxxxxxxxxxxxxxxxxxxxxxxx ---->>>>>> deleteTask ----> tasks",
+    tasks
+  );
 
   const nbTasksCompleted = () => {
     let count = 0;
@@ -81,6 +95,8 @@ const TasksContainer = () => {
   const toggleForm = () => {
     setIsFormAvailable(!isFormAvailable);
   };
+  /*   console.log("------------------------------->>>>>>> tasks, ", tasks);
+  console.log("------------------------------->>>>>>> tasks ID , ", tasks); */
 
   return (
     <View style={styles.container}>
